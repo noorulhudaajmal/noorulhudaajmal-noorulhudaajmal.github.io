@@ -50,16 +50,19 @@ In the single-layer case, the output vector 'o' and the input embedding 'u' are 
 
 The overall architecture of the single-layer MemN2N model is depicted in Figure above, with the entire process facilitating smooth gradient computation for backpropagation during training.
 
-The MemN2N model can be extended to handle multiple memory hops or layers. These layers are stacked, and the input to layers above the first is the sum of the output 'o' and the input 'u' from the previous layer. Each layer has its own embedding matrices 'Ak' and 'Ck' for embedding inputs, and different schemes of weight tying are explored to ease training and reduce parameters.
-
+The MemN2N model can be extended to handle multiple memory hops or layers. These layers are stacked, and the input to layers above the first is the sum of the output 'o' and the input 'u' from the previous layer. Each layer has its own embedding matrices 'Ak' and 'Ck' for embedding inputs, and different weights.
 ## Example Scenario
 
 Let's say we have a story-question pair as
+
 **Story:**
+
 1. Sam moved to garden.
 2. Sam went to kicthen.
 3. Sam drops apple there.
+
 **Question:**
+
 Where is Sam?
 
 In the initial step, we take each sentence from the story and transform it into a memory vector, resulting in three memory vectors {m1, m2, m3}. Similarly, we do the same for the question, creating a controller state vector, 'u.' Following this, we utilize a dot product and softmax operation to determine attention weights.
