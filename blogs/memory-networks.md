@@ -15,6 +15,20 @@ MemN2N can be thought of as a 'soft attention' version of the original Memory Ne
 
 The MemN2N architecture, short for End-to-end Memory Network, was designed to understand and respond to natural language questions based on information stored in its memory. Let's break down its architecture step by step, as outlined in the original paper.
 
+![alt text](memn2n.png)
+
+It consists of two main modules:
+1. Memory module
+2. Controller module
+
+### Memory Module
+Inside this, there are memory vectors. Imagine we have a set of input sentences, denoted as {x1, x2, ..., xi}, which we want to store in memory. These sentences are converted into memory vectors {m1, m2, ..., mi}, each of dimension 'd,' using an embedding matrix 'A' of size 'd×V'.
+Additionally, this module also embeds the input sequences {x1, x2, ..., xi}, using embedding matrix 'C' giving c_i.
+
+### Controller Module
+The controller module contains internal state vectors that also come from input or can be fixed vectors. Essentially, these are the embedding vectors of the question, q from the input. These internal state vectors are used to address the memory, which in turn gives a next vector that can be added to the state vector. 
+Here question 'q' is embedded, using embedding matrix 'B' with the same dimensions as 'A,' to create an internal state 'u'. 
+
 ## Input Memory Representation
 
 Imagine we have a set of input sentences, denoted as {x1, x2, ..., xi}, which we want to store in memory. These sentences are converted into memory vectors {m1, m2, ..., mi}, each of dimension 'd,' using an embedding matrix 'A' of size 'd×V.' Additionally, the question 'q' is also embedded, typically using another embedding matrix 'B' with the same dimensions as 'A,' to create an internal state 'u.' To determine the relevance of each memory 'mi,' an inner product followed by a softmax operation is applied, resulting in a probability vector 'p.'
