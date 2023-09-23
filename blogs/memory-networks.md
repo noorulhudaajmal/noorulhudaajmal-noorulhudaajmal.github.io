@@ -54,6 +54,24 @@ The MemN2N model can be extended to handle multiple memory hops or layers. These
 
 ## Example Scenario
 
+Let's say we have a story-question pair as
+**Story:**
+1. Sam moved to garden.
+2. Sam went to kicthen.
+3. Sam drops apple there.
+**Question:**
+Where is Sam?
+
+In the initial step, we take each sentence from the story and transform it into a memory vector, resulting in three memory vectors {m1, m2, m3}. Similarly, we do the same for the question, creating a controller state vector, 'u.' Following this, we utilize a dot product and softmax operation to determine attention weights.
+
+In a conceptual sense, as the first two sentences contain information about Sam's location, the model assigns higher weights to these sentences during the attention calculation. However, considering the time embedding, the model may prioritize the more recent information. In this case, it assigns a higher attention score to the second sentence.
+
+Next, we perform a weighted sum of the memory vectors and incorporate it back into the controller state, as illustrated in the figure below. Finally, we apply a softmax operation to obtain the final answer.
+
+![image](https://github.com/noorulhudaajmal/noorulhudaajmal.github.io/assets/68446582/bffa4634-3f67-4ef8-9c66-19aed47f8c35)
+
+## Applications
+
 To illustrate the MemN2N model in action, consider a chatbot that stores previous user interactions in memory and utilizes this knowledge to respond intelligently to new queries. As users ask questions, the model retrieves relevant information from its memory and generates responses based on its understanding of the conversation history.
 
 ## Conclusion
