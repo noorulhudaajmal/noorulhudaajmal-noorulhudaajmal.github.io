@@ -1,14 +1,21 @@
 # Understanding End-to-End Memory Networks (MemN2N)
 
-**Introduction to Memory Networks**
+## Introduction to Memory Networks
 
-Before the rise of Transformers, memory networks played a pivotal role in natural language processing tasks, particularly in question-answering and chatbot applications. These models paved the way for sophisticated conversational AI systems. In this blog post, we delve into the MemN2N model, a remarkable memory network architecture introduced in 2015, exploring its architecture and how it operates.
+Before the rise of Transformers, memory networks played a pivotal role in natural language processing tasks, particularly in question-answering and chatbot applications. These models paved the way for sophisticated conversational AI systems. In this post, we will try to understand the underlying concept of the MemN2N model, by exploring its architecture and how it operates.
 
-**The MemN2N Architecture**
+It is based on Memory Networks to overcome some of their shortcomings, namely:
+- use of hard attention
+- explicit supervision of attention during training
+- limited to simple tasks
 
-The MemN2N architecture, short for Memory Networks with Neural Networks, is a precursor to the popular Transformer models. It was designed to understand and respond to natural language questions based on information stored in its memory. Let's break down its architecture step by step, as outlined in the original paper.
+MemN2N can be thought of as a 'soft attention' version of the original Memory Networks, requiring supervision only on the final output.
 
-**Input Memory Representation**
+## The MemN2N Architecture
+
+The MemN2N architecture, short for End-to-end Memory Network, was designed to understand and respond to natural language questions based on information stored in its memory. Let's break down its architecture step by step, as outlined in the original paper.
+
+## Input Memory Representation
 
 Imagine we have a set of input sentences, denoted as {x1, x2, ..., xi}, which we want to store in memory. These sentences are converted into memory vectors {m1, m2, ..., mi}, each of dimension 'd,' using an embedding matrix 'A' of size 'd×V.' Additionally, the question 'q' is also embedded, typically using another embedding matrix 'B' with the same dimensions as 'A,' to create an internal state 'u.' To determine the relevance of each memory 'mi,' an inner product followed by a softmax operation is applied, resulting in a probability vector 'p.'
 
